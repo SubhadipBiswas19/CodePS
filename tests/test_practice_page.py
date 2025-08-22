@@ -90,23 +90,24 @@ def test_element_options(driver):
     assert multi_select.first_selected_option.text == "Orange"
 
 
-# #Auto Suggest Example
-# def test_element_autoInput(driver):
-#     auto_input = driver.find_element(By.XPATH, "//input[@id='autosuggest']")
-#     auto_input.click()
-#     auto_input.send_keys("au")
-#
-#     wait = WebDriverWait(driver, 10)
-#     suggestion_list = wait.until(
-#         EC.visibility_of_element_located((By.CSS_SELECTOR, "ul.ui-autocomplete")))
-#     suggestions = suggestion_list.find_elements(By.TAG_NAME, "li")
-#
-#     for suggestion in suggestions:
-#         if "Mobile App Automation" in suggestion.text:
-#             suggestion.click()
-#             break
-#
-#         assert auto_input.get_attribute("value") == "Mobile App Automation"
+#Auto Suggest Example
+def test_element_autoInput(driver):
+    auto_input = driver.find_element(By.XPATH, "//input[@id='autosuggest']")
+    auto_input.click()
+    auto_input.send_keys("au")
+
+    wait = WebDriverWait(driver, 10)
+    suggestion_list = wait.until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, "ul.ui-autocomplete")))
+    suggestions = suggestion_list.find_elements(By.TAG_NAME, "li")
+
+    for suggestion in suggestions:
+        if "Mobile App Automation" in suggestion.text:
+            suggestion.click()
+            break
+
+    assert auto_input.get_attribute("value") == "Mobile App Automation"
+
 
 #Enabled/Disabled Example
 def test_element_enabledDisabled(driver):
