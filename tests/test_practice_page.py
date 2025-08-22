@@ -91,7 +91,7 @@ def test_element_options(driver):
 
 
 # #Auto Suggest Example
-# def test_element_auto_input(driver):
+# def test_element_autoInput(driver):
 #     auto_input = driver.find_element(By.XPATH, "//input[@id='autosuggest']")
 #     auto_input.click()
 #     auto_input.send_keys("au")
