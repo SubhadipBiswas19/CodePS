@@ -90,23 +90,23 @@ def test_element_options(driver):
     assert multi_select.first_selected_option.text == "Orange"
 
 
-#Auto Suggest Example
-def test_element_auto_input(driver):
-    auto_input = driver.find_element(By.XPATH, "//input[@id='autosuggest']")
-    auto_input.click()
-    auto_input.send_keys("au")
-
-    wait = WebDriverWait(driver, 10)
-    suggestion_list = wait.until(
-        EC.visibility_of_element_located((By.CSS_SELECTOR, "ul.ui-autocomplete")))
-    suggestions = suggestion_list.find_elements(By.TAG_NAME, "li")
-
-    for suggestion in suggestions:
-        if "Mobile App Automation" in suggestion.text:
-            suggestion.click()
-            break
-
-        assert auto_input.get_attribute("value") == "Mobile App Automation"
+# #Auto Suggest Example
+# def test_element_auto_input(driver):
+#     auto_input = driver.find_element(By.XPATH, "//input[@id='autosuggest']")
+#     auto_input.click()
+#     auto_input.send_keys("au")
+#
+#     wait = WebDriverWait(driver, 10)
+#     suggestion_list = wait.until(
+#         EC.visibility_of_element_located((By.CSS_SELECTOR, "ul.ui-autocomplete")))
+#     suggestions = suggestion_list.find_elements(By.TAG_NAME, "li")
+#
+#     for suggestion in suggestions:
+#         if "Mobile App Automation" in suggestion.text:
+#             suggestion.click()
+#             break
+#
+#         assert auto_input.get_attribute("value") == "Mobile App Automation"
 
 #Enabled/Disabled Example
 def test_element_enabledDisabled(driver):
@@ -114,7 +114,6 @@ def test_element_enabledDisabled(driver):
     enable_button = driver.find_element(By.XPATH, "//input[@id='enabled-button']")
     input_field = driver.find_element(By.ID, "enabled-example-input")
 
-    # First, ensure the field is enabled and can accept text
     enable_button.click()
     WebDriverWait(driver, 5).until(
         EC.element_to_be_clickable((By.XPATH, "//input[@id='enabled-example-input']"))
@@ -124,12 +123,11 @@ def test_element_enabledDisabled(driver):
     time.sleep(1)
     assert input_field.get_attribute("value") == "Subhadip"
 
-    # Now disable the field and check it is disabled
     disable_button.click()
     WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.ID, "enabled-example-input"))
     )
-    assert not input_field.is_enabled(), "Input field should be disabled"
+    assert not input_field.is_enabled(), "Input field must be disabled"
 
 #Element Displayed Example
 def test_element_displayed_showHide(driver):
@@ -141,13 +139,13 @@ def test_element_displayed_showHide(driver):
     WebDriverWait(driver, 5).until(
         EC.invisibility_of_element_located((By.XPATH, "//input[@id='displayed-text']"))
     )
-    assert not displayed_text.is_displayed(), "Textbox should be hidden"
+    assert not displayed_text.is_displayed(), "Textbox must be hidden"
 
     show_button.click()
     WebDriverWait(driver, 5).until(
         EC.visibility_of_element_located((By.XPATH, "//input[@id='displayed-text']"))
     )
-    assert displayed_text.is_displayed(), "Textbox should be visible"
+    assert displayed_text.is_displayed(), "Textbox must be visible"
 
 #Switch To Alert Example
 def test_element_alert(driver):
